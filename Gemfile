@@ -21,7 +21,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'paperclip'
 
 group :development, :test do
   gem 'rspec-rails'
