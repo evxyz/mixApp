@@ -28,7 +28,7 @@ class SongsController < ApplicationController
   
   def update
         @song = Song.find params[:id]
-        @song.update_attributes(params[:song])
+        @song.update_attributes(params[:song]) #=> {:aritst_id => 1}
     
   end
 end

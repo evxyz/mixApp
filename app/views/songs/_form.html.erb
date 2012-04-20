@@ -15,8 +15,9 @@
     <%= f.text_field :name %>
   </div>
 
-
-
+  <div class="field">
+    <%= f.select :artist_id, Artist.all.collect{|a| [a.name, a.id]} %>
+  </div>
 
 
   <div class="actions">
