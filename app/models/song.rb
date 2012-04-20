@@ -1,12 +1,11 @@
 class Song < ActiveRecord::Base
-  validates :name, :length => {:in => 1..10}
+  validates :name, :presence => true
   
-  validate :must_be_good_music
-  
-  def must_be_good_music
-    if !name.match /adele/
-      errors.add(:base, "Song must be good")
-    end
-  end
+  # 1. The Songs table has an artist_id column
+  # 2. The application defines an Artist class
+  belongs_to :artist
+  has_many :genrefications
+  has_many :genres, :through => :genrefications
   
 end
+
