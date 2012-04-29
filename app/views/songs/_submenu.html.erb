@@ -1,0 +1,7 @@
+<% content_for :submenu do %>
+  <ul class="nav nav-list">
+    <li class="nav-header">Songs</li>
+    <li><%= link_to("New Song", new_song_path, {:class => "whatever", :data => {:remote => true, :avi => "hello"}}) %></li>
+    <li><%= link_to "Songs", songs_path %></li>
+  </ul>
+<% end %>
