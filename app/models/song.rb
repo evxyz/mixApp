@@ -6,6 +6,9 @@ class Song < ActiveRecord::Base
   has_many :genrefications
   has_many :genres, :through => :genrefications
   
+  has_many :mixtape_songs
+  has_many :mixtapes, :through => :mixtape_songs
+  
   def artist_name=(string)
     self.artist = Artist.find_or_create_by_name(string)
   end

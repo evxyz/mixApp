@@ -41,7 +41,16 @@ class MixtapesController < ApplicationController
   # POST /mixtapes
   # POST /mixtapes.json
   def create
-    @mixtape = Mixtape.new(params[:mixtape])
+    # params = {
+    #   :mixtape => {:name => "Mixtape Name"},
+    #   :songs => ["Song 1", "Song 2"]
+    # }
+    
+    # Iterate through params
+    # for each key that matches "song_"
+    # create a song with that keys value as the name
+    # and then assign all those songs to the mixtape
+    @mixtape = Mixtape.new(params[:mixtape])    
     
     respond_to do |format|
       if @mixtape.save
