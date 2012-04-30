@@ -1,20 +1,14 @@
-<%= form_for(@mixtape) do |f| %>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+<%= form_for @mixtape, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
   </div>
 
-  <select name="mixtape[songs_to_add_by_song_id][]" multiple='multiple'>
-    <% Song.all.each do |song| %>
-      <option value="<%= song.id %>"><%= song.name%></option>
-    <% end %>
-  </select>  
-
-  
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                mixtapes_path, :class => 'btn' %>
   </div>
-
-
 <% end %>
-
