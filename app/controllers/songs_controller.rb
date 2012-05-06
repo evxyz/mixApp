@@ -13,7 +13,8 @@ class SongsController < ApplicationController
   end
 
   def create
-    @song = Song.new(params[:song])
+    @song = Song.new(slice_params(params[:song]))
+    @song.assign_artist(params[:song])
 
     if @song.save
       redirect_to @song
@@ -28,11 +29,30 @@ class SongsController < ApplicationController
 
   def update
     @song = Song.find(params[:id])
+    @song.assign_artist(params[:song])
 
-    if @song.update_attributes(params[:song]) #=> {:aritst_id => 1}
+    # "'new_genre_name', 1"
+
+    params[:song][:genre_names].split(",").each do |genre_token|
+      genre = if genre_token.is_numeric?
+        Genre.find(genre_token)
+      else
+        Genre.find_or_create_by_name(genre_token.gsub("'", ""))
+      end
+
+      genrefication = @song.genrefications.build(:genre => genre)
+      genrefication.save
+    end
+
+    if @song.update_attributes(slice_params(params[:song])) #=> {:aritst_id => 1}
      redirect_to @song
     else
       render :new
     end
   end
+
+  private
+    def slice_params(params)
+      params.except(:artist_id, :artist_name, :genre_names)
+    end
 end

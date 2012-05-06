@@ -1,0 +1,33 @@
+<div class="control-group">
+  <%= f.label :name, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :name, :class => 'text_field' %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :artist_id, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.select :artist_id, Artist.all.collect{|a| [a.name, a.id]}, {:include_blank => true} ,{:data => {:placeholder => "Select an artist..."}}%>
+  </div>
+</div>
+
+<div class="control-group">
+  <div class="controls">
+    or <%= f.text_field :artist_name, :value => "", :placeholder => "create a new one" %></div>
+</div>
+
+<div class="control-group">
+  <%= f.label :genre_names, "Genres", :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :genre_names,
+    :data => {:genres =>
+     f.object.genres.collect{|g| {:id => g.id, :name => g.name}}.to_json
+    }   %></div>
+</div>
+
+<div class="control-group">
+  <%= f.label :audio, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.file_field :audio, :class => 'file_field' %>
+  </div>
+</div>

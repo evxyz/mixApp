@@ -1,9 +1,9 @@
 class MixtapesController < ApplicationController
-  
+
   def avi
   end
-  
-  
+
+
   # GET /mixtapes
   # GET /mixtapes.json
   def index
@@ -41,19 +41,17 @@ class MixtapesController < ApplicationController
   # POST /mixtapes
   # POST /mixtapes.json
   def create
-    # params = {
-    #   :mixtape => {:name => "Mixtape Name"},
-    #   :songs => ["Song 1", "Song 2"]
-    # }
-    
-    # Iterate through params
-    # for each key that matches "song_"
-    # create a song with that keys value as the name
-    # and then assign all those songs to the mixtape
-    @mixtape = Mixtape.new(params[:mixtape])    
-    
+    @mixtape = Mixtape.new(params[:mixtape])
+
+    params[:songs].each do |index, song_hash|
+      next if song_hash[:audio].blank?
+      @mixtape.songs.build(song_hash)
+    end if params[:songs]
+
     respond_to do |format|
       if @mixtape.save
+
+
         format.html { redirect_to @mixtape, notice: 'Mixtape was successfully created.' }
         format.json { render json: @mixtape, status: :created, location: @mixtape }
       else

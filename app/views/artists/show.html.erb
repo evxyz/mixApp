@@ -6,20 +6,7 @@
   <%= @artist.name %>
 </p>
 
-<p>
-  <strong>Songs</strong><br>
-  <div id="songs">
-    <%# @artist.songs.each do |song| %>
-      <!-- <li><%#= link_to song.name, song %></li> -->
-    <%# end %>
-
-    <%# @artist.songs.each do |song| %>
-      <%#= render 'songs/song_li', :song => song %>
-    <%# end %>
-    <%= render({:partial => 'songs/song_li', :collection => @artist.songs, :as => :song}) %>
-    <%= render @artist.songs %>
-  </div>
-</p>
+<%= songs_for(@artist) %>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

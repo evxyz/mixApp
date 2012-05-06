@@ -6,6 +6,9 @@
   <%= @mixtape.name %>
 </p>
 
+<%= songs_for @mixtape %>
+
+
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               mixtapes_path, :class => 'btn'  %>

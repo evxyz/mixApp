@@ -2,7 +2,11 @@ class GenresController < ApplicationController
   # GET /genres
   # GET /genres.json
   def index
-    @genres = Genre.all
+    @genres = if params[:q].present?
+      Genre.where(["name LIKE ?", "#{params[:q]}%"])
+    else
+      Genre.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

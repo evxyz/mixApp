@@ -6,14 +6,7 @@
   <%= @genre.name %>
 </p>
 
-<p>
-  <strong>Songs</strong><br>
-  <ul>
-    <% @genre.songs.each do |song| %>
-      <li><%= link_to song.name, song %></li>
-    <% end %>
-  </ul>
-</p>
+<%= songs_for(@genre) %>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

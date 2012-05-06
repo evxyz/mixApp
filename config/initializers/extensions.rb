@@ -1,0 +1,1 @@
+require 'extensions/string_extension.rb'

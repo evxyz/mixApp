@@ -21,7 +21,11 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'paperclip'
+gem 'ruby-mp3info', :require => 'mp3info'
+
+
+gem "paperclip", "~> 3.0"
+
 gem 'therubyracer'
 gem "twitter-bootstrap-rails"
 
