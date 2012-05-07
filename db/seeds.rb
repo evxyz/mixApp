@@ -10,7 +10,7 @@
 
 
 # Open up a directory
-path = ARGV.last || '/Users/avi/Desktop/Pitchfork Top 100 Tracks of 2011'
+path = ARGV.last
 
 mixtape = Mixtape.create(:name => "Pitchfork Top 100 Tracks of 2011")
 

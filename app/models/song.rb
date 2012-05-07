@@ -31,19 +31,15 @@ class Song < ActiveRecord::Base
     self.genres.collect{|g| g.name} if self.genres.any?
   end
 
-  [""].map do |i|
-    i unless i.blank?
-  end #=> [nil]
-
-
-
-
   def genre_names=(genre_names)
-    updated_genres = [genre_names].flatten.map do |string|
-      Genre.find_or_create_by_name(string.strip.downcase) unless string.blank?
+    self.genres = []
+    genre_names.split(",").each do |genre_token|
+      genre = if genre_token.is_numeric?
+        Genre.find(genre_token)
+      else
+        Genre.find_or_create_by_name(genre_token.gsub("'", ""))
+      end
+      genrefication = self.genrefications.build(:genre => genre)
     end
-
-    # assign those genres to the song
-    self.genres = updated_genres.compact
   end
 end
