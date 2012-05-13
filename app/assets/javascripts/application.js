@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
+
 //= require chosen/chosen.jquery
 //= require token-input/jquery.tokeninput.js
 //= require_tree .

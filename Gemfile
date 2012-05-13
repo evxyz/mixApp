@@ -27,7 +27,8 @@ gem 'ruby-mp3info', :require => 'mp3info'
 gem "paperclip", "~> 3.0"
 
 gem 'therubyracer'
-gem "twitter-bootstrap-rails"
+
+
 
 group :development, :test do
   gem 'rspec-rails'
