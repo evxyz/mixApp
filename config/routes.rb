@@ -5,7 +5,10 @@ Mixtapeapp::Application.routes.draw do
 
   resources :artists
 
-  resources :mixtapes
+  resources :mixtapes do
+    resources :shares, :only => [:new, :create]
+  end
+
   resources :songs
 
   get '/login' => 'sessions#new'
