@@ -37,6 +37,7 @@ class MixtapesController < ApplicationController
   # POST /mixtapes.json
   def create
     @mixtape = Mixtape.new(params[:mixtape])
+    @mixtape.owner = current_user
 
     params[:songs].each do |index, song_hash|
       next if song_hash[:audio].blank?
