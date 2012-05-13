@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       back_to = session[:back_to] || '/'
-      redirect_to back_to
+      redirect_to :back || '/'
     else
       render :new, :notice => "Unable to Login"
     end

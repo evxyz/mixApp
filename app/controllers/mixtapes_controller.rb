@@ -13,12 +13,8 @@ class MixtapesController < ApplicationController
   # GET /mixtapes/1
   # GET /mixtapes/1.json
   def show
-    @mixtape = current_user.mixtapes.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @mixtape }
-    end
+    @mixtape = Mixtape.find(params[:id])
+    current_user_can? :listen, @mixtape
   end
 
   # GET /mixtapes/new

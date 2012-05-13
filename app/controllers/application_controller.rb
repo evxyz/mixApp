@@ -25,12 +25,11 @@ class ApplicationController < ActionController::Base
     session[:user_id] = user.id
   end
 
-    def login_required
-      if User.find_by_id(session[:user_id])
-        true
-      else
-        session[:back_to] = request.url
-        redirect_to '/login', :notice => "You must login."
-      end
+  def current_user_can?(action, object)
+    allowed = object.try("#{action}able_by?".to_sym)
+
+    if !allowed
+      redirect_to(login_path, :notice => "You do not have permission to #{action}") and return
     end
+  end
 end
