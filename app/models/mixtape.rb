@@ -45,7 +45,7 @@ class Mixtape < ActiveRecord::Base
 
   private
     def add_owner_permission
-      self.add_user(self.owner, :owner)
+      self.add_user(self.owner, :own)
     end
 end
 
