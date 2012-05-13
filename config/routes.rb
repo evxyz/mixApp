@@ -8,6 +8,9 @@ Mixtapeapp::Application.routes.draw do
   resources :mixtapes
   resources :songs
 
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
 
 
   get '/avi/' => 'songs#slice_params'

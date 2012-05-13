@@ -34,9 +34,14 @@
           <a class="brand" href="/">Mixtapeapp</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
+              <% if logged_in? %>
               <% ["Mixtapes", "Genres", "Artists", "Songs"].each do |resource| %>
               <li><%= link_to resource, instance_eval("#{resource.downcase}_path")  %></li>
               <% end %>
+              <li><%= link_to "Logout", logout_path %></li>
+            <% else %>
+              <li><%= link_to "Login", login_path %></li>
+            <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

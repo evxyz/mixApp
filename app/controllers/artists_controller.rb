@@ -1,4 +1,6 @@
 class ArtistsController < ApplicationController
+  before_filter :load_artist, :only => [:show, :edit]
+
   # GET /artists
   # GET /artists.json
   def index
@@ -13,8 +15,6 @@ class ArtistsController < ApplicationController
   # GET /artists/1
   # GET /artists/1.json
   def show
-    @artist = Artist.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @artist }
@@ -34,7 +34,7 @@ class ArtistsController < ApplicationController
 
   # GET /artists/1/edit
   def edit
-    @artist = Artist.find(params[:id])
+
   end
 
   # POST /artists
@@ -80,4 +80,9 @@ class ArtistsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def load_artist
+      @artist = Artist.find(params[:id])
+    end
 end

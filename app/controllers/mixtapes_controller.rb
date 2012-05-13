@@ -7,14 +7,13 @@ class MixtapesController < ApplicationController
   # GET /mixtapes
   # GET /mixtapes.json
   def index
-    @mixtapes = Mixtape.all
-    mixtapes = Mixtape.all
+    @mixtapes = current_user.mixtapes
   end
 
   # GET /mixtapes/1
   # GET /mixtapes/1.json
   def show
-    @mixtape = Mixtape.find(params[:id])
+    @mixtape = current_user.mixtapes.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

@@ -1,6 +1,7 @@
 class Mixtape < ActiveRecord::Base
   has_many :mixtape_songs
   has_many :songs, :through => :mixtape_songs
+  belongs_to :owner, :class_name => 'User'
 
   accepts_nested_attributes_for :songs
 
