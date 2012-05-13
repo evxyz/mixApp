@@ -26,8 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_can?(action, object)
-    allowed = object.try("#{action}able_by?".to_sym)
-
+    allowed = object.try("#{action}able_by?".to_sym, current_user)
     if !allowed
       redirect_to(login_path, :notice => "You do not have permission to #{action}") and return
     end
